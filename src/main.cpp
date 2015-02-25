@@ -51,6 +51,8 @@ int main()
 
 
   Ball b;
+  Ground g;
+  g.groundLevel = -90;
   int quit = 0;
   while(!quit)
   {
@@ -90,7 +92,10 @@ int main()
 
   b.Draw(b.PosX, b.PosY);
   b.PosY += 1;
-  std::cout<<b.PosY<<"\n";
+
+
+
+  g.Draw();
 
   SDL_GL_SwapWindow(win);
 

@@ -65,6 +65,7 @@ void Ball::sphere(float _radius, int _precision, float _x, float _y)
       normal.set(cosf(theTa2) * cosf(theTa3) , sinf(theTa2), cosf(theTa2) * sinf(theTa3));
       vertex=normal*_radius;
       vertex += Vec4(_x, _y, 0.0f);
+      std::cout<<_x<<" x \n"<<_y<<" y\n";
       normal.normalGL();
       vertex.vertexGL();
       normal.set(cosf(theTa1) * cosf(theTa3) , sinf(theTa1), cosf(theTa1) * sinf(theTa3));
