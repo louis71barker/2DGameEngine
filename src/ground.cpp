@@ -12,12 +12,13 @@
   #include <OpenGL/gl.h>
 #endif
 
-void Ground::floor(GLfloat _w, GLfloat _h, GLfloat _d)
+void Ground::floor(GLfloat _w, GLfloat _h,GLfloat _b, GLfloat _d)
 {
   SDL_Rect _rect;
   // assume the  cube centered at the origin
   GLfloat w=_rect.w;
-  GLfloat h=_h/2.0f;
+  GLfloat h=-90;
+  GLfloat b = -120;
   GLfloat d=_d/2.0f;
 
 
@@ -26,8 +27,8 @@ void Ground::floor(GLfloat _w, GLfloat _h, GLfloat _d)
     glNormal3f(0,0,1);
     glVertex3f(-w,h,d);
     glVertex3f(w,h,d);
-    glVertex3f(w,-h,d);
-    glVertex3f(-w,-h,d);
+    glVertex3f(w,b,d);
+    glVertex3f(-w,b,d);
 //    // back face
 //    glNormal3d(0,0,-1);
 //    glVertex3f(-w,h,-d);
@@ -70,6 +71,6 @@ void Ground::Draw()
 
   glPushMatrix();
     green.colourGL();
-    Ground::floor(20.0,20.0,1.0);
+    Ground::floor(20.0,-90,-120,1.0);
   glPopMatrix();
 }

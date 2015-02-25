@@ -13,7 +13,7 @@ class Ground
 public :
   float groundLevel;
   static void Draw();
-  static void floor(GLfloat _w, GLfloat _h, GLfloat _d);
+  static void floor(GLfloat _w, GLfloat _h, GLfloat _b, GLfloat _d);
 
 
 private:

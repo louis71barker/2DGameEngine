@@ -91,7 +91,9 @@ int main()
   }
 
   b.Draw(b.PosX, b.PosY);
-  b.PosY += 1;
+  double grav = b.PosY *0.1;
+  b.PosY -= 1;
+
 
 
 
