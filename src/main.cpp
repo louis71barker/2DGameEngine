@@ -53,6 +53,11 @@ int main()
   glEnable(GL_NORMALIZE);
 
 
+
+
+
+
+
   Ball b;
   Ground g;
   g.groundLevel = -90;
@@ -82,10 +87,24 @@ int main()
                             }
                           }break;
 
+       }
+
 
 
 
     }
+
+    b.Draw(b.PosX, b.PosY);
+    //double grav = b.PosY *0.1;
+    b.PosY -= 1;
+    b.PosX = 0;
+    b.Pos(10,10);
+
+
+    g.Draw();
+
+
+    SDL_GL_SwapWindow(win);
 
 
 
@@ -93,20 +112,11 @@ int main()
 
   }
 
-  b.Draw(b.PosX, b.PosY);
-  //double grav = b.PosY *0.1;
-  b.PosY -= 1;
 
-
-
-
-  g.Draw();
-
-  SDL_GL_SwapWindow(win);
 
 
 
 
 
 }
-}
+

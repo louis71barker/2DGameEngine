@@ -41,6 +41,7 @@ void Ball::sphere(float _radius, int _precision, float _x, float _y)
   float theTa3 = 0.0;
   float z = 0.0f;
 
+
   Vec4 normal;
   Vec4 vertex;
   glBegin(GL_TRIANGLE_STRIP);
@@ -66,6 +67,7 @@ void Ball::sphere(float _radius, int _precision, float _x, float _y)
       normal.set(cosf(theTa2) * cosf(theTa3) , sinf(theTa2), cosf(theTa2) * sinf(theTa3));
       vertex=normal*_radius;
       vertex += Vec4(_x, _y, z);
+      std::cout<<_x<<" x\n"<<_y<<_y<<" y\n\n";
 
       normal.normalGL();
       vertex.vertexGL();
@@ -95,5 +97,11 @@ void Ball::Draw(float _x, float _y)
 
   glPopMatrix();
 
+
+}
+
+
+void Ball::Pos(float _Sx, float _Sy)
+{
 
 }

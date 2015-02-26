@@ -8,6 +8,7 @@ SOURCES+=src/main.cpp\
          src/plank.cpp\
          src/window.cpp\
          src/Enviroment.cpp\
+         src/input.cpp\
          src/NCCA/GLFunctions.cpp\
          src/NCCA/Mat4.cpp\
          src/NCCA/Vec4.cpp\
@@ -20,6 +21,7 @@ HEADERS+=header/ball.h\
          header/window.h\
          header/scene.h\
          header/Enviroment.h\
+         header/input.h\
          header/NCCA/GLFunctions.h\
          header/NCCA/Mat4.h\
          header/NCCA/Vec4.h\
