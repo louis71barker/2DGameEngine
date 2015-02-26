@@ -20,6 +20,9 @@ int main()
   SDL_Rect rect;
   SDL_GetDisplayBounds(0,&rect);
   SDL_Window *win;
+  Window w;
+  w.screenH = rect.w;
+  w.screenH = rect.h;
   win=SDL_CreateWindow("2D Phyics Game and Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, rect.w/2, rect.w/2, SDL_WINDOW_OPENGL);
 
   if (!win)
@@ -91,7 +94,7 @@ int main()
   }
 
   b.Draw(b.PosX, b.PosY);
-  double grav = b.PosY *0.1;
+  //double grav = b.PosY *0.1;
   b.PosY -= 1;
 
 

@@ -12,26 +12,26 @@
 #endif
 
 
-void Ball::perspective(float _fovy,float _aspect, float _zNear, float _zFar)
-{
-  float range = tan(radians(_fovy / 2.0)) * _zNear;
-  float left = -range * _aspect;
-  float right = range * _aspect;
-  float bottom = -range;
-  float top = range;
-  Mat4 result;
-  result.m_00 = (2.0f * _zNear) / (right - left);
-  result.m_11 = (2.0f * _zNear) / (top - bottom);
-  result.m_22 = - (_zFar + _zNear) / (_zFar - _zNear);
-  result.m_23 = - 1.0f;
-  result.m_32 = - (2.0f* _zFar * _zNear) / (_zFar - _zNear);
-  result.loadProjection();
-}
+//void Ball::perspective(float _fovy,float _aspect, float _zNear, float _zFar)
+//{
+//  float range = tan(radians(_fovy / 2.0)) * _zNear;
+//  float left = -range * _aspect;
+//  float right = range * _aspect;
+//  float bottom = -range;
+//  float top = range;
+//  Mat4 result;
+//  result.m_00 = (2.0f * _zNear) / (right - left);
+//  result.m_11 = (2.0f * _zNear) / (top - bottom);
+//  result.m_22 = - (_zFar + _zNear) / (_zFar - _zNear);
+//  result.m_23 = - 1.0f;
+//  result.m_32 = - (2.0f* _zFar * _zNear) / (_zFar - _zNear);
+//  result.loadProjection();
+//}
 
- float Ball::radians(float _deg )
-{
-  return (_deg/180.0f) * M_PI;
-}
+// float Ball::radians(float _deg )
+//{
+//  return (_deg/180.0f) * M_PI;
+//}
 
 
 void Ball::sphere(float _radius, int _precision, float _x, float _y)

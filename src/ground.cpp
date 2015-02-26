@@ -21,8 +21,11 @@ void Ground::floor(GLfloat _w, GLfloat _h,GLfloat _b, GLfloat _d)
   GLfloat b = -120;
   GLfloat d=_d/2.0f;
 
+  glPushMatrix();
 
   glBegin(GL_QUADS);
+  Vec4 green(0,1,0);
+    green.colourGL();
     // front face
     glNormal3f(0,0,1);
     glVertex3f(-w,h,d);
@@ -61,16 +64,17 @@ void Ground::floor(GLfloat _w, GLfloat _h,GLfloat _b, GLfloat _d)
 //    glVertex3f(w,-h,d);
 
   glEnd();
+  glPopMatrix();
 }
 
 
 void Ground::Draw()
 {
-  Vec4 green(0,1,0);
 
 
-  glPushMatrix();
-    green.colourGL();
+
+  //glPushMatrix();
+
     Ground::floor(20.0,-90,-120,1.0);
-  glPopMatrix();
+  //glPopMatrix();
 }

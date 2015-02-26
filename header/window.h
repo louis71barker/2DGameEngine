@@ -6,4 +6,17 @@
 void SDLErrorExit(const std::string &_err);
 SDL_GLContext createOpenGLContext(SDL_Window *_win);
 
+
+
+class Window
+{
+public:
+  double screenW,screenH;
+
+
+protected:
+
+
+};
+
 #endif
