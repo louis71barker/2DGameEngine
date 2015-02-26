@@ -14,11 +14,11 @@ CC            = clang
 CXX           = clang++
 DEFINES       = -DLINUX -DLINUX -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-CXXFLAGS      = -pipe -msse -msse2 -msse3 -I/usr/local/include/SDL2 -D_REENTRANT -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
+CXXFLAGS      = -pipe -msse -msse2 -msse3 -I/usr/include/SDL2 -D_REENTRANT -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
 INCPATH       = -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-clang -I. -Iheader -Iheader/NCCA -Iusr/local/lib -I/usr/include/qt5 -I/usr/include/qt5/QtOpenGL -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I.
 LINK          = clang++
 LFLAGS        = -ccc-gcc-name g++
-LIBS          = $(SUBLIBS) -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lSDL2 -lGLEW -lQt5OpenGL -L/usr/X11R6/lib64 -L/usr/lib/x86_64-linux-gnu -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/lib/x86_64-linux-gnu -lSDL2 -L/usr/local/lib -lGLEW -lQt5OpenGL -L/usr/X11R6/lib64 -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
@@ -52,6 +52,7 @@ SOURCES       = src/main.cpp \
 		src/plank.cpp \
 		src/window.cpp \
 		src/Enviroment.cpp \
+		src/input.cpp \
 		src/NCCA/GLFunctions.cpp \
 		src/NCCA/Mat4.cpp \
 		src/NCCA/Vec4.cpp \
@@ -63,6 +64,7 @@ OBJECTS       = obj/main.o \
 		obj/plank.o \
 		obj/window.o \
 		obj/Enviroment.o \
+		obj/input.o \
 		obj/GLFunctions.o \
 		obj/Mat4.o \
 		obj/Vec4.o \
@@ -108,7 +110,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-clang/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		../../../../.qmake.cache \
+		../.qmake.cache \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
@@ -160,7 +162,7 @@ all: Makefile $(TARGET)
 $(TARGET):  $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
-Makefile: 2DEngine.pro ../../../../.qmake.cache /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-clang/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+Makefile: 2DEngine.pro ../.qmake.cache /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-clang/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -201,7 +203,7 @@ Makefile: 2DEngine.pro ../../../../.qmake.cache /usr/lib/x86_64-linux-gnu/qt5/mk
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-clang/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		../../../../.qmake.cache \
+		../.qmake.cache \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
@@ -266,7 +268,7 @@ Makefile: 2DEngine.pro ../../../../.qmake.cache /usr/lib/x86_64-linux-gnu/qt5/mk
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-clang/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
-../../../../.qmake.cache:
+../.qmake.cache:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
@@ -296,7 +298,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d obj/2DEngine1.0.0 || mkdir -p obj/2DEngine1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) obj/2DEngine1.0.0/ && $(COPY_FILE) --parents header/ball.h header/box.h header/ground.h header/plank.h header/window.h header/scene.h header/Enviroment.h header/NCCA/GLFunctions.h header/NCCA/Mat4.h header/NCCA/Vec4.h header/NCCA/World.h obj/2DEngine1.0.0/ && $(COPY_FILE) --parents src/main.cpp src/ball.cpp src/box.cpp src/ground.cpp src/plank.cpp src/window.cpp src/Enviroment.cpp src/NCCA/GLFunctions.cpp src/NCCA/Mat4.cpp src/NCCA/Vec4.cpp src/NCCA/World.cpp obj/2DEngine1.0.0/ && (cd `dirname obj/2DEngine1.0.0` && $(TAR) 2DEngine1.0.0.tar 2DEngine1.0.0 && $(COMPRESS) 2DEngine1.0.0.tar) && $(MOVE) `dirname obj/2DEngine1.0.0`/2DEngine1.0.0.tar.gz . && $(DEL_FILE) -r obj/2DEngine1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) obj/2DEngine1.0.0/ && $(COPY_FILE) --parents header/ball.h header/box.h header/ground.h header/plank.h header/window.h header/scene.h header/Enviroment.h header/input.h header/NCCA/GLFunctions.h header/NCCA/Mat4.h header/NCCA/Vec4.h header/NCCA/World.h obj/2DEngine1.0.0/ && $(COPY_FILE) --parents src/main.cpp src/ball.cpp src/box.cpp src/ground.cpp src/plank.cpp src/window.cpp src/Enviroment.cpp src/input.cpp src/NCCA/GLFunctions.cpp src/NCCA/Mat4.cpp src/NCCA/Vec4.cpp src/NCCA/World.cpp obj/2DEngine1.0.0/ && (cd `dirname obj/2DEngine1.0.0` && $(TAR) 2DEngine1.0.0.tar 2DEngine1.0.0 && $(COMPRESS) 2DEngine1.0.0.tar) && $(MOVE) `dirname obj/2DEngine1.0.0`/2DEngine1.0.0.tar.gz . && $(DEL_FILE) -r obj/2DEngine1.0.0
 
 
 clean:compiler_clean 
@@ -342,7 +344,8 @@ obj/main.o: src/main.cpp header/scene.h \
 		header/box.h \
 		header/ground.h \
 		header/plank.h \
-		header/window.h
+		header/window.h \
+		header/input.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o src/main.cpp
 
 obj/ball.o: src/ball.cpp header/ball.h \
@@ -366,6 +369,9 @@ obj/window.o: src/window.cpp header/window.h
 
 obj/Enviroment.o: src/Enviroment.cpp header/Enviroment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Enviroment.o src/Enviroment.cpp
+
+obj/input.o: src/input.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/input.o src/input.cpp
 
 obj/GLFunctions.o: src/NCCA/GLFunctions.cpp header/NCCA/GLFunctions.h \
 		header/NCCA/Vec4.h \

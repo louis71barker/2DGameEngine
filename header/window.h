@@ -3,6 +3,16 @@
 
 #include <SDL.h>
 
+
+#ifdef LINUX
+  #include <GL/gl.h>
+#endif
+#ifdef DARWIN
+  #include <OpenGL/gl.h>
+#endif
+
+
+
 void SDLErrorExit(const std::string &_err);
 SDL_GLContext createOpenGLContext(SDL_Window *_win);
 
@@ -18,5 +28,8 @@ protected:
 
 
 };
+
+
+
 
 #endif

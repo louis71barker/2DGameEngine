@@ -67,7 +67,7 @@ void Ball::sphere(float _radius, int _precision, float _x, float _y)
       normal.set(cosf(theTa2) * cosf(theTa3) , sinf(theTa2), cosf(theTa2) * sinf(theTa3));
       vertex=normal*_radius;
       vertex += Vec4(_x, _y, z);
-      std::cout<<_x<<" x\n"<<_y<<_y<<" y\n\n";
+     //std::cout<<_x<<" x\n"<<_y<<_y<<" y\n\n";
 
       normal.normalGL();
       vertex.vertexGL();
@@ -93,7 +93,7 @@ void Ball::Draw(float _x, float _y)
   glPushMatrix();
     red.colourGL();
     Ball::sphere(15, 26, _x, _y);
-    std::cout<<"Ball Drawn"<<"\n";
+    //std::cout<<"Ball Drawn"<<"\n";
 
   glPopMatrix();
 

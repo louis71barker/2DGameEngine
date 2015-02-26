@@ -1,13 +1,11 @@
 #ifndef BALL_H__
 #define BALL_H__
 
-#include "NCCA/Vec4.h""
+#include "NCCA/Vec4.h"
 #include "NCCA/Mat4.h"
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
-#include "opencv2/core/core.hpp"
-
 
 const static float TWO_PI= float(2*M_PI); //6.28318530717958647692   //360
 const static float PI=float(M_PI); //3.14159265358979323846       //180
@@ -48,11 +46,6 @@ private:
 
 
 };
-
-
-
-
-
 
 
 

@@ -60,6 +60,7 @@ int main()
 
   Ball b;
   Ground g;
+  Plank p;
   g.groundLevel = -90;
   int quit = 0;
   while(!quit)
@@ -86,6 +87,32 @@ int main()
 
                             }
                           }break;
+       case SDL_MOUSEBUTTONDOWN:
+           {
+               if(e.button.button == SDL_BUTTON_LEFT)
+               {
+                   p.xCoorGained = true;
+
+                   if (p.xCoorGained == true && p.yCoorGained == false)
+                   {
+                     p.yCoorGained = true;
+
+                   }
+                   if (p.xCoorGained == true && p.yCoorGained == true)
+                   {
+                     p.coorGained = true;
+                     p.drawTrigger = true;
+                     p.pointNum++;
+                     //p.getShelpCo();
+                     std::cout<<"Hello you beautiful thing"<<"\n";
+
+                   }
+               }
+               if(e.button.button == SDL_BUTTON_RIGHT)
+               {
+                 std::cout<<"right button down booooooooom \n\n"<<std::endl;
+               }
+            }
 
        }
 
@@ -99,6 +126,7 @@ int main()
     b.PosY -= 1;
     b.PosX = 0;
     b.Pos(10,10);
+    p.Planeish();
 
 
     g.Draw();
