@@ -12,35 +12,13 @@
 #endif
 
 
-//void Ball::perspective(float _fovy,float _aspect, float _zNear, float _zFar)
-//{
-//  float range = tan(radians(_fovy / 2.0)) * _zNear;
-//  float left = -range * _aspect;
-//  float right = range * _aspect;
-//  float bottom = -range;
-//  float top = range;
-//  Mat4 result;
-//  result.m_00 = (2.0f * _zNear) / (right - left);
-//  result.m_11 = (2.0f * _zNear) / (top - bottom);
-//  result.m_22 = - (_zFar + _zNear) / (_zFar - _zNear);
-//  result.m_23 = - 1.0f;
-//  result.m_32 = - (2.0f* _zFar * _zNear) / (_zFar - _zNear);
-//  result.loadProjection();
-//}
 
-// float Ball::radians(float _deg )
-//{
-//  return (_deg/180.0f) * M_PI;
-//}
-
-
-void Ball::sphere(float _radius, int _precision, float _x, float _y)
+void Ball::sphere(float _radius, int _precision, float _x, float _y, Ball &_b)
 {
   float theTa1 = 0.0;
   float theTa2 = 0.0;
   float theTa3 = 0.0;
   float z = 0.0f;
-
 
   Vec4 normal;
   Vec4 vertex;
@@ -66,14 +44,14 @@ void Ball::sphere(float _radius, int _precision, float _x, float _y)
       theTa3 = j * TWO_PI / _precision;
       normal.set(cosf(theTa2) * cosf(theTa3) , sinf(theTa2), cosf(theTa2) * sinf(theTa3));
       vertex=normal*_radius;
-      vertex += Vec4(_x, _y, z);
+      vertex += Vec4(_b.ballPoints[0].m_Sx, _b.ballPoints[0].m_Sy/*_x,_y*/, z);
      //std::cout<<_x<<" x\n"<<_y<<_y<<" y\n\n";
 
       normal.normalGL();
       vertex.vertexGL();
       normal.set(cosf(theTa1) * cosf(theTa3) , sinf(theTa1), cosf(theTa1) * sinf(theTa3));
       vertex=normal*_radius;
-      vertex += Vec4(_x, _y, z);
+      vertex += Vec4(_b.ballPoints[0].m_Sx, _b.ballPoints[0].m_Sy/*_x,_y*/, z);
       normal.normalGL();
       vertex.vertexGL();
     }
@@ -84,24 +62,54 @@ void Ball::sphere(float _radius, int _precision, float _x, float _y)
 }
 
 
-void Ball::Draw(float _x, float _y)
+void Ball::Draw(float _x, float _y, Ball &_b)
 {
-  Vec4 red(1,0,0);
+  if (_b.ballDrawTrigger == true)
+  {
+    GLfloat blueish[] = {0.1f, .6f, .8f, 1.0f};
+    GLfloat white[] = {0.8f, .8f, .8f, 1.0f};
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, blueish);
+  //  glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+  //  GLfloat shininess[] = {10};
+  //  glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
 
 
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glPushMatrix();
-    red.colourGL();
-    Ball::sphere(15, 26, _x, _y);
-    //std::cout<<"Ball Drawn"<<"\n";
 
-  glPopMatrix();
+    glPushMatrix();
+      Ball::sphere(10, 20, _x, _y, _b);
+      //std::cout<<"Ball Drawn"<<"\n";
 
+    glPopMatrix();
+    //std::cout<<"pppooooonnnaaannyyyy";
+
+    std::cout<<_b.PosY;
+
+  }
 
 }
 
 
-void Ball::Pos(float _Sx, float _Sy)
+void Ball::Pos(float _Sx, float _Sy, Ball &_b, float Rectwidth)
 {
+  if (_b.ballCoorGain == false && _b.ballLive == false)
+  {
+    _b.ballPoints[0].m_Sx = (((float) _Sx * 2.0 / (float)Rectwidth)*200.0 - 100);
+    _b.ballPoints[0].m_Sy = -(((float) _Sy * 2.0 / (float)Rectwidth)*200.0 - 100);
+    std::cout<< _b.ballPoints[0].m_Sx << " x    " << _b.ballPoints[0].m_Sy << " y     ";
+    _b.ballDrawTrigger = true;
+    _b.ballLive = true;
+  }
+}
 
+
+void Ball::EnviroEffects(Ball &_b)
+{
+  _b.ballPoints[0].m_Sy -= 1;
+  if ((_b.PosY + -BALLRADIUS) <= GROUNDLEVEL)
+  {
+
+   _b.ballPoints[0].m_Sy = _b.ballPoints[0].m_Sy * -0.2 ;
+   std::cout<<"arrrrrrrrrrr why are you not working that hurts \n";
+
+  }
 }

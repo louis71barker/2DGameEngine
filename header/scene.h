@@ -8,6 +8,12 @@
 #include"plank.h"
 #include"window.h"
 #include"input.h"
+#include"Enviroment.h"
+
+
+#define GROUNDLEVEL -90
+#define GRAVITY 9.8
+#define BALLRADIUS 10
 
 
 

@@ -12,7 +12,13 @@
 #endif
 
 
+Enviroment::Enviroment()
+{
+}
+
 void Enviroment::Gravity(float grav)
 {
   grav = 1;
 }
+
+

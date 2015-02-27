@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
+#include <scene.h>
 
 const static float TWO_PI= float(2*M_PI); //6.28318530717958647692   //360
 const static float PI=float(M_PI); //3.14159265358979323846       //180
@@ -17,24 +18,26 @@ class Ball
 {
 public:
 
-  Ball(float _x, float _y) :
+  Ball(float _x = 1.0f, float _y = 1.0f) :
     PosX(_x),PosY(_y)
   {
-    Points[0].m_Sx = Points[0].m_Sy = Points[1].m_Sx = Points[1].m_Sy = 0.f;
+    ballPoints[0].m_Sx = ballPoints[0].m_Sy = 0.f; ballCoorGain = false; ballLive = false;
   }
 
   static void perspective(float _fovy,float _aspect, float _zNear, float _zFar);
   static float radians(float _deg );
-  static void sphere(float _radius, int _precision, float _x, float _y);
-  static void Draw(float _x, float _y);
-  static void Pos(float _Sx, float _Sy);
+  static void sphere(float _radius, int _precision, float _x, float _y, Ball &_b);
+  static void Draw(float _x, float _y,Ball &_b);
+  static void Pos(float _Sx, float _Sy, Ball &_b, float Rectwidth);
+  static void EnviroEffects(Ball &_b);
+  bool ballCoorGain, ballDrawTrigger, ballCollison, ballLive;
 
   struct SpherePos
   {
     float m_Sx;
     float m_Sy;
   };
-  SpherePos Points[2];
+  SpherePos ballPoints[2];
 
   float PosX, PosY;
 
@@ -43,6 +46,7 @@ public:
 
 
 private:
+  int xVel, yVel;
 
 
 };

@@ -28,14 +28,14 @@ HEADERS+=header/ball.h\
          header/NCCA/World.h
 
 QT += core
-QT +=opengl
+QT -= opengl
 CONFIG-=app_bundle
 DESTDIR=./
 OBJECTS_DIR=obj
 
 INCLUDEPATH += header
 INCLUDEPATH += header/NCCA
-INCLUDEPATH +=usr/local/lib
+INCLUDEPATH += usr/local/lib
 
 QMAKE_CXXFLAGS+= -msse -msse2 -msse3
 macx:QMAKE_CXXFLAGS+= -arch x86_64
