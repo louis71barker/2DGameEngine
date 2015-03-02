@@ -5,6 +5,8 @@
 
 #include <cstdlib>
 #include <vector>
+#include "plank.h"
+#include "ball.h"
 
 
 
@@ -29,6 +31,7 @@ public :
 
   static void Gravity(float grav);
   static void Background(float _w, float _h);
+  static void shelfColliosion(Plank &_p, Ball &_b);
 
 
 

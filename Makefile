@@ -391,7 +391,8 @@ obj/main.o: src/main.cpp header/scene.h \
 
 obj/ball.o: src/ball.cpp header/ball.h \
 		header/NCCA/Vec4.h \
-		header/NCCA/Mat4.h
+		header/NCCA/Mat4.h \
+		header/scene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/ball.o src/ball.cpp
 
 obj/box.o: src/box.cpp 
@@ -408,7 +409,12 @@ obj/plank.o: src/plank.cpp header/plank.h
 obj/window.o: src/window.cpp header/window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/window.o src/window.cpp
 
-obj/Enviroment.o: src/Enviroment.cpp header/Enviroment.h
+obj/Enviroment.o: src/Enviroment.cpp header/Enviroment.h \
+		header/plank.h \
+		header/ball.h \
+		header/NCCA/Vec4.h \
+		header/NCCA/Mat4.h \
+		header/scene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Enviroment.o src/Enviroment.cpp
 
 obj/input.o: src/input.cpp 

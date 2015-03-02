@@ -1,7 +1,7 @@
 #include <iostream>
 #include "plank.h"
 #include <SDL.h>
-
+#include <ctime>
 
 #ifdef LINUX
   #include <GL/gl.h>
@@ -28,16 +28,22 @@ void Plank::Draw(Plank &_p)
 
   if (_p.pointsDrawn == true)
   {
-    for(int i = 1; i < _p.steps; ++i)
+    std::clock_t start = std::clock();
+    for(int i = 1; i < STEPS; ++i)
      {
-       glVertex3f(_p.plankPoints[mX].m_Px+i*(fabs(_p.plankPoints[(mX+1)%2].m_Px - _p.plankPoints[mX].m_Px))/_p.steps,
-                  _p.plankPoints[mX].m_Py+(-1*mY)*i*(fabs(_p.plankPoints[(mX+1)%2].m_Py - _p.plankPoints[mX].m_Py)/_p.steps), 0.0f);
-     }
+      glVertex3f(_p.plankPoints[mX].m_Px+i*(fabs(_p.plankPoints[(mX+1)%2].m_Px - _p.plankPoints[mX].m_Px))/STEPS,
+                  _p.plankPoints[mX].m_Py+(-1*mY)*i*(fabs(_p.plankPoints[(mX+1)%2].m_Py - _p.plankPoints[mX].m_Py)/STEPS), 0.0f);
+      _p.collisionPoints[i-1].m_Cx = _p.plankPoints[mX].m_Px+i*(fabs(_p.plankPoints[(mX+1)%2].m_Px - _p.plankPoints[mX].m_Px))/STEPS;
+      _p.collisionPoints[i-1].m_Cy = _p.plankPoints[mX].m_Py+(-1*mY)*i*(fabs(_p.plankPoints[(mX+1)%2].m_Py - _p.plankPoints[mX].m_Py)/STEPS);
+      //std::cout<<_p.collisionPoints[i-1].m_Cx<<"   x    "<<_p.collisionPoints[i-1].m_Cy<<"    y";
+      //_p.collisionPoints[i].m_Cx = 1.0f;
+    }
+    //std::cout << "Ran in :" << (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000) << "ms\n";
   }
   glEnd();
   glPopMatrix();
 
-  //std::cout << fabs(_p.plankPoints[(mX+1)%2].m_Py - _p.plankPoints[mX].m_Py)/_p.steps << "\n";
+  //std::cout << fabs(_p.plankPoints[(mX+1)%2].m_Py - _p.plankPoints[mX].m_Py)/_p.STEPS << "\n";
 
   //std::cout << "P1:" << fabs(_p.plankPoints[1].m_Py) - fabs(_p.plankPoints[0].m_Py) << "\n";
 

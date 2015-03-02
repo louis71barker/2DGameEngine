@@ -9,6 +9,14 @@
 #include <vector>
 #include <time.h>
 #include "header/scene.h"
+#include "header/ball.h"
+#include "header/box.h"
+#include "header/ground.h"
+#include "header/plank.h"
+#include "header/window.h"
+#include "header/input.h"
+#include "header/Enviroment.h"
+
 
 #ifdef LINUX
   #include <GL/gl.h>
@@ -176,6 +184,8 @@ int main()
     p.Planeish(p);
     p.Draw(p);
     b.EnviroEffects(b);
+    ev.shelfColliosion(p , b);
+
 
 
 

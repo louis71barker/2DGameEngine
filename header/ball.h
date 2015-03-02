@@ -6,7 +6,8 @@
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
-#include <scene.h>
+#include "scene.h"
+
 
 const static float TWO_PI= float(2*M_PI); //6.28318530717958647692   //360
 const static float PI=float(M_PI); //3.14159265358979323846       //180
@@ -21,7 +22,14 @@ public:
   Ball(float _x = 1.0f, float _y = 1.0f) :
     PosX(_x),PosY(_y)
   {
-    ballPoints[0].m_Sx = ballPoints[0].m_Sy = 0.f; ballCoorGain = false; ballLive = false;
+    ballPoints[0].m_Sx = ballPoints[0].m_Sy = 0.0f; ballCoorGain = false; ballLive = false;
+    speed = 0.01f;
+    angle = 0.0f;
+    acceleration = 0.1f;
+    ballScaleX = 0.0f;
+    ballScaleY = 0.0f;
+    ballVel_X = 0.0f;
+    ballVel_Y = 0.0f;
   }
 
   static void perspective(float _fovy,float _aspect, float _zNear, float _zFar);
@@ -31,6 +39,8 @@ public:
   static void Pos(float _Sx, float _Sy, Ball &_b, float Rectwidth);
   static void EnviroEffects(Ball &_b);
   bool ballCoorGain, ballDrawTrigger, ballCollison, ballLive;
+
+  float speed, angle,acceleration, ballScaleX, ballScaleY, ballVel_X, ballVel_Y;
 
   struct SpherePos
   {

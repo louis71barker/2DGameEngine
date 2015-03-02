@@ -67,7 +67,7 @@ void Ball::Draw(float _x, float _y, Ball &_b)
   if (_b.ballDrawTrigger == true)
   {
     GLfloat blueish[] = {0.1f, .6f, .8f, 1.0f};
-    GLfloat white[] = {0.8f, .8f, .8f, 1.0f};
+    //GLfloat white[] = {0.8f, .8f, .8f, 1.0f};
     glMaterialfv(GL_FRONT, GL_DIFFUSE, blueish);
   //  glMaterialfv(GL_FRONT, GL_SPECULAR, white);
   //  GLfloat shininess[] = {10};
@@ -95,7 +95,7 @@ void Ball::Pos(float _Sx, float _Sy, Ball &_b, float Rectwidth)
   {
     _b.ballPoints[0].m_Sx = (((float) _Sx * 2.0 / (float)Rectwidth)*200.0 - 100);
     _b.ballPoints[0].m_Sy = -(((float) _Sy * 2.0 / (float)Rectwidth)*200.0 - 100);
-    std::cout<< _b.ballPoints[0].m_Sx << " x    " << _b.ballPoints[0].m_Sy << " y     ";
+    //std::cout<< _b.ballPoints[0].m_Sx << " x    " << _b.ballPoints[0].m_Sy << " y     ";
     _b.ballDrawTrigger = true;
     _b.ballLive = true;
   }
@@ -104,12 +104,37 @@ void Ball::Pos(float _Sx, float _Sy, Ball &_b, float Rectwidth)
 
 void Ball::EnviroEffects(Ball &_b)
 {
-  _b.ballPoints[0].m_Sy -= 1;
-  if ((_b.PosY + -BALLRADIUS) <= GROUNDLEVEL)
+
+  _b.angle = 30;
+
+  _b.ballScaleX = cos(_b.angle);
+  _b.ballScaleY = sin(_b.angle);
+
+//  _b.ballVel_X = (_b.speed * _b.ballScaleX );
+//  _b.ballVel_Y = (_b.speed * _b.ballScaleY );
+
+
+  if ((_b.ballPoints[0].m_Sy + (-BALLRADIUS)*1.5) <= GROUNDLEVEL)
   {
 
-   _b.ballPoints[0].m_Sy = _b.ballPoints[0].m_Sy * -0.2 ;
-   std::cout<<"arrrrrrrrrrr why are you not working that hurts \n";
+   _b.ballPoints[0].m_Sy = _b.ballPoints[0].m_Sy - _b.ballVel_Y ;
 
+
+  }
+  if ((_b.ballPoints[0].m_Sy + -BALLRADIUS) >= GROUNDLEVEL)
+  {
+    _b.speed = _b.speed * 1.2f;
+    if (_b.speed >= 7.0)
+    {
+      _b.speed = 7.0f;
+    }
+    if(_b.acceleration > 5.0)
+      std::cout << "x\n";
+    std::cout<<_b.acceleration << " " << _b.speed<<" sppppeeeeedddddd\n";
+    _b.ballVel_X = (_b.speed * _b.ballScaleX);
+    _b.ballVel_Y = (_b.speed * _b.ballScaleY);
+
+   _b.ballPoints[0].m_Sy = _b.ballPoints[0].m_Sy + _b.ballVel_Y;
+   //std::cout<<_b.ballPoints[0].m_Sy<<"\n";
   }
 }
