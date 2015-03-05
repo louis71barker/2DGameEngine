@@ -3,7 +3,7 @@
 
 #define GROUNDLEVEL -90
 #define GRAVITY 9.8
-#define BALLRADIUS 12.6
+#define BALLRADIUS 12.7
 
 
 
