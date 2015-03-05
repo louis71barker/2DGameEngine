@@ -22,7 +22,7 @@ public:
   Ball(float _x = 1.0f, float _y = 1.0f) :
     PosX(_x),PosY(_y)
   {
-    ballPoints[0].m_Sx = ballPoints[0].m_Sy = 0.0f; ballCoorGain = false; ballLive = false;
+    ballPoints[0].m_Sx = ballPoints[0].m_Sy = 100.0f; ballCoorGain = false; ballLive = false;
     speed = 0.001f;
     angle = 0.0f;
     acceleration = 0.1f;

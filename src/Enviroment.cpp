@@ -25,10 +25,12 @@ void Enviroment::shelfColliosion(Plank &_p,Ball &_b)
 {
   for (int i = 0; i<STEPS; i++)
   {
-    //std::cout << _p.collisionPoints[i].m_Cx - _b.ballPoints[0].m_Sx << " " << _p.collisionPoints[i].m_Cy - _b.ballPoints[0].m_Sy << "\n";
-    if (fabs(_p.collisionPoints[i].m_Cx - _b.ballPoints[0].m_Sx) < 0.5f && fabs(_p.collisionPoints[i].m_Cy - _b.ballPoints[0].m_Sy) < 0.5f)
+    //std::cout << i << " ith num     "<< fabs(_p.collisionPoints[i].m_Cx - _b.ballPoints[0].m_Sx) << "\n";
+    //std::cout <<_b.ballPoints[0].m_Sx << "    x   " << _b.ballPoints[0].m_Sy << "   y     \n";
+    if ((fabs(_p.collisionPoints[i].m_Cx - _b.ballPoints[0].m_Sx)-4) < 1.0f && (fabs(_p.collisionPoints[i].m_Cy - _b.ballPoints[0].m_Sy)-4) < 7.0)
     {
       std::cout<<"boom boom boom there is a crash arrrrrrrrrrr!!!!!!!!!!!!!!!!\n";
+      _b.speed = 0.0f;
     }
   }
 }

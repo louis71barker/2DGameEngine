@@ -129,8 +129,8 @@ void Ball::EnviroEffects(Ball &_b)
       _b.speed = 7.0f;
     }
     if(_b.acceleration > 5.0)
-      std::cout << "x\n";
-    std::cout<<"          "<<_b.acceleration << " " << _b.speed<<" sppppeeeeedddddd\n";
+//      std::cout << "x\n";
+//    std::cout<<"          "<<_b.acceleration << " " << _b.speed<<" sppppeeeeedddddd\n";
     _b.ballVel_X = (_b.speed * _b.ballScaleX);
     _b.ballVel_Y = (_b.speed * _b.ballScaleY);
 

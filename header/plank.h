@@ -25,7 +25,7 @@ public :
   Plank(float _x = 0.0f, float _y = 0.0f) :
     mousePosX(_x), mousePosY(_y), pointNum(0)/*, steps(5000)*/
   {
-    plankPoints[0].m_Px = plankPoints[0].m_Py = plankPoints[1].m_Px = plankPoints[1].m_Py = 0.0f;
+    plankPoints[0].m_Px = plankPoints[0].m_Py = plankPoints[1].m_Px = plankPoints[1].m_Py = 9.0f;
     for (int i = 0;i<STEPS;i++)
     {
       collisionPoints[i].m_Cx = 0.0f;
